@@ -26,6 +26,7 @@ body{
 header{
     height: 48px;
     width: 100%;
+    display: flex;
     background-color: rgba(26, 26, 26, 0.80);
     backdrop-filter: blur(10px);
 }
