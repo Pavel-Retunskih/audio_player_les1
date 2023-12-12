@@ -95,10 +95,10 @@ function renderPlaylist(playlistForRender) {
 
     let trackListContainer = document.createElement('div');
     trackListContainer.classList.add('tracklist_container')
-    trackListContainer.append(renderTracksInList(playlistForRender.playListTracks[0]),
-    renderTracksInList(playlistForRender.playListTracks[1]),
-    renderTracksInList(playlistForRender.playListTracks[2]),
-    renderTracksInList(playlistForRender.playListTracks[3]));
+    trackListContainer.append(renderTrackInList(playlistForRender.playListTracks[0]),
+    renderTrackInList(playlistForRender.playListTracks[1]),
+    renderTrackInList(playlistForRender.playListTracks[2]),
+    renderTrackInList(playlistForRender.playListTracks[3]));
 
     playlistContainer.append(renderHeaderPlaylist(playlistForRender),trackListContainer)
 
@@ -136,15 +136,13 @@ function renderHeaderPlaylist(playlistItem){
 
 }
 //*------------------Track list render function
-function renderTracksInList(playlistTrackItem) {
+function renderTrackInList(playlistTrackItem) {
     let trackContainer = document.createElement('div');
     document.body.append(trackContainer);
     trackContainer.classList.add('track')
 
     let trackCoverImg = document.createElement('img');
     trackCoverImg.src = playlistTrackItem.coverTrackImg;
-
-    
 
     let trackTitle = document.createElement('p');
     trackTitle.innerHTML = playlistTrackItem.isHotTrack === true ? `<span class = "hot">${playlistTrackItem.artistName} -</span> ${playlistTrackItem.trackName}` : `<span>${playlistTrackItem.artistName} -</span> ${playlistTrackItem.trackName}`
