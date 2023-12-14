@@ -6,10 +6,13 @@ renderPlaylist(playList);
 function renderPlaylist(playlistForRender) {
     let allPlaylistsContainer = document.querySelector('#container')
     for (let i = 0; i < playlistForRender.length; i++) {
-        const element = playlistForRender[i];
-        allPlaylistsContainer.append(renderSinglePlaylistContainer(element))
+        const playlist = playlistForRender[i];
+        allPlaylistsContainer.append(renderSinglePlaylistContainer(playlist))
     }
-
     return allPlaylistsContainer;
 }
+
+
+
+
 
