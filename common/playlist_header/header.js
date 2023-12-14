@@ -1,3 +1,5 @@
+import {playlistTimeCountInfo} from "./time_count.js";
+import {renderAllArtistsInPlaylist} from "./list_of_artists.js";
 export function renderHeaderPlaylist(playlistTrackItemData){
     let headerPlaylistContainer = document.createElement('div');
     document.body.append(headerPlaylistContainer);
@@ -15,16 +17,9 @@ export function renderHeaderPlaylist(playlistTrackItemData){
     playlistTitle.textContent = playlistTrackItemData.title;
     playlistInfoContainer.append(playlistTitle);
 
-    let playlistTimeCountInfo = document.createElement('p');
-    playlistTimeCountInfo.textContent = `${playlistTrackItemData.allTracksInfo.trackCount} tracks, ${(playlistTrackItemData.allTracksInfo.timeCountinSeconds/60).toFixed(2).split('.')[0]}m 
-    ${(playlistTrackItemData.allTracksInfo.timeCountinSeconds/60).toFixed(2).split('.')[1]}s`;    
-    playlistInfoContainer.append(playlistTimeCountInfo);
-   
-  
-
-    let allArtistsInPlaylist = document.createElement('p');
-    allArtistsInPlaylist.innerHTML = playlistTrackItemData.allTracksInfo.allArtists.length >= 3 ? `<span>${playlistTrackItemData.allTracksInfo.allArtists.join(', ')}</span> and others` : `<span>${playlistTrackItemData.allTracksInfo.allArtists.join(', ')}</span>`;
-    playlistInfoContainer.append(allArtistsInPlaylist);
+    playlistInfoContainer.append(playlistTimeCountInfo(playlistTrackItemData));
+ 
+    playlistInfoContainer.append(renderAllArtistsInPlaylist(playlistTrackItemData));
     return headerPlaylistContainer;
 
 }
