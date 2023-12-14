@@ -1,5 +1,5 @@
 //*-----------------Data of playlists
-let playList = {
+let playList = [{
     title:'Hip-Hop Hits',
     coverImg:'./img/01.png',
     allTracksInfo:{
@@ -38,9 +38,7 @@ let playList = {
         },
         
     ]
-}
-
-let playList2 = {
+},{
     title:'Rap Hits 1990s',
     coverImg:'./img/Rectangle 101.png',
     allTracksInfo:{
@@ -79,41 +77,52 @@ let playList2 = {
         },
         
     ]
-}
+},
+];
+
+
 
 
 //*-----------------DOM Render
 
 renderPlaylist(playList)
-renderPlaylist(playList2)
 
-//*------------------Current playlist rendering
+
+//*------------------Full playlist rendering
 function renderPlaylist(playlistForRender) {
-    let playlistContainer = document.createElement('div')
-    document.body.append(playlistContainer);
-    playlistContainer.classList.add('playlist_container');
+    let allPlaylistsContainer = document.querySelector('#container')
+    for (let i = 0; i < playlistForRender.length; i++) {
+        const element = playlistForRender[i];
+        allPlaylistsContainer.append(renderSinglePlaylistContainer(element))
+    }
+    return allPlaylistsContainer;
+}
 
+function renderSinglePlaylistContainer(playlistForRenderData){
+    let singlePlaylistContainer = document.createElement('div')
+    document.body.append(singlePlaylistContainer);
+    singlePlaylistContainer.classList.add('playlist_container');
+    singlePlaylistContainer.append(renderHeaderPlaylist(playlistForRenderData),renderTrackListContainer(playlistForRenderData));
+    return singlePlaylistContainer;
+}
+//*------------------Tracklist container in Playlist render function
+function renderTrackListContainer(playlistForRenderData){
     let trackListContainer = document.createElement('div');
     trackListContainer.classList.add('tracklist_container')
-    trackListContainer.append(renderTrackInList(playlistForRender.playListTracks[0]),
-    renderTrackInList(playlistForRender.playListTracks[1]),
-    renderTrackInList(playlistForRender.playListTracks[2]),
-    renderTrackInList(playlistForRender.playListTracks[3]));
-
-    playlistContainer.append(renderHeaderPlaylist(playlistForRender),trackListContainer)
-
-    let allPlaylistsContainer = document.querySelector('#container')
-    allPlaylistsContainer.append(playlistContainer)
-    return 
+    for (let i = 0; i < playlistForRenderData.playListTracks.length; i++) {
+        const element = playlistForRenderData.playListTracks[i];
+        trackListContainer.append(renderTrackInContainer(element))
+    };
+    return trackListContainer
 }
-//*------------------Header render function
-function renderHeaderPlaylist(playlistItem){
+//*------------------Header playlist render function
+function renderHeaderPlaylist(playlistTrackItemData){
     let headerPlaylistContainer = document.createElement('div');
     document.body.append(headerPlaylistContainer);
     headerPlaylistContainer.classList.add('playlist_header')
 
     let playlistCoverImg = document.createElement('img');
-    playlistCoverImg.src = playlistItem.coverImg;
+    playlistCoverImg.src = playlistTrackItemData.coverImg;
     headerPlaylistContainer.append(playlistCoverImg);
 
     let playlistInfoContainer = document.createElement('div');
@@ -121,34 +130,34 @@ function renderHeaderPlaylist(playlistItem){
     headerPlaylistContainer.append(playlistInfoContainer);
 
     let playlistTitle = document.createElement('h2');
-    playlistTitle.textContent = playlistItem.title;
+    playlistTitle.textContent = playlistTrackItemData.title;
     playlistInfoContainer.append(playlistTitle);
 
     let playlistTimeCountInfo = document.createElement('p');
-    playlistTimeCountInfo.textContent = `${playlistItem.allTracksInfo.trackCount} tracks, ${(playlistItem.allTracksInfo.timeCountinSeconds/60).toFixed(2).split('.')[0]}m 
-    ${(playlistItem.allTracksInfo.timeCountinSeconds/60).toFixed(2).split('.')[1]}s`;    
+    playlistTimeCountInfo.textContent = `${playlistTrackItemData.allTracksInfo.trackCount} tracks, ${(playlistTrackItemData.allTracksInfo.timeCountinSeconds/60).toFixed(2).split('.')[0]}m 
+    ${(playlistTrackItemData.allTracksInfo.timeCountinSeconds/60).toFixed(2).split('.')[1]}s`;    
     playlistInfoContainer.append(playlistTimeCountInfo);
 
     let allArtistsInPlaylist = document.createElement('p');
-    allArtistsInPlaylist.innerHTML = playlistItem.allTracksInfo.allArtists.length >= 3 ? `<span>${playlistItem.allTracksInfo.allArtists.join(', ')}</span> and others` : `<span>${playlistItem.allTracksInfo.allArtists.join(', ')}</span>`;
+    allArtistsInPlaylist.innerHTML = playlistTrackItemData.allTracksInfo.allArtists.length >= 3 ? `<span>${playlistTrackItemData.allTracksInfo.allArtists.join(', ')}</span> and others` : `<span>${playlistTrackItemData.allTracksInfo.allArtists.join(', ')}</span>`;
     playlistInfoContainer.append(allArtistsInPlaylist)
     return headerPlaylistContainer;
 
 }
-//*------------------Track list render function
-function renderTrackInList(playlistTrackItem) {
+//*------------------One track container render function
+function renderTrackInContainer(playlistTrackItemData) {
     let trackContainer = document.createElement('div');
     document.body.append(trackContainer);
     trackContainer.classList.add('track')
 
     let trackCoverImg = document.createElement('img');
-    trackCoverImg.src = playlistTrackItem.coverTrackImg;
+    trackCoverImg.src = playlistTrackItemData.coverTrackImg;
 
     let trackTitle = document.createElement('p');
-    trackTitle.innerHTML = playlistTrackItem.isHotTrack === true ? `<span class = "hot">${playlistTrackItem.artistName} -</span> ${playlistTrackItem.trackName}` : `<span>${playlistTrackItem.artistName} -</span> ${playlistTrackItem.trackName}`
+    trackTitle.innerHTML = playlistTrackItemData.isHotTrack === true ? `<span class = "hot">${playlistTrackItemData.artistName} -</span> ${playlistTrackItemData.trackName}` : `<span>${playlistTrackItemData.artistName} -</span> ${playlistTrackItemData.trackName}`
 
     let playerAudio = document.createElement('audio');
-    playerAudio.src = playlistTrackItem.audioUrl;
+    playerAudio.src = playlistTrackItemData.audioUrl;
     playerAudio.controls = true;
 
     let trackTitleAndAudioContainer = document.createElement('div');
