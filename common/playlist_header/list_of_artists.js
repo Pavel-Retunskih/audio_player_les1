@@ -1,5 +1,10 @@
 export function renderAllArtistsInPlaylist(playlistTrackItemData) {
     let allArtistsInPlaylist = document.createElement('p');
-    allArtistsInPlaylist.innerHTML = playlistTrackItemData.allTracksInfo.allArtists.length >= 3 ? `<span>${playlistTrackItemData.allTracksInfo.allArtists.join(', ')}</span> and others` : `<span>${playlistTrackItemData.allTracksInfo.allArtists.join(', ')}</span>`;
+    allArtistsInPlaylist.innerHTML = playlistTrackItemData.playListTracks.length >= 3 ? `<span>${getAllArtists(playlistTrackItemData).join(', ')}</span> and others` : `<span>${getAllArtists(playlistTrackItemData).join(', ')}</span>`;
     return allArtistsInPlaylist
+}
+
+function getAllArtists(playlistTrackItemData) {
+    const listOfArtists = playlistTrackItemData.playListTracks.map((e)=>e.artistName);
+    return listOfArtists;
 }
