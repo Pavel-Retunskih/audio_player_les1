@@ -7,6 +7,7 @@ export function renderHeaderPlaylist(playlistTrackItemData){
 
     let playlistCoverImg = document.createElement('img');
     playlistCoverImg.src = playlistTrackItemData.coverImg;
+    playlistCoverImg.setAttribute('alt', 'playlistCoverImg')
     headerPlaylistContainer.append(playlistCoverImg);
 
     let playlistInfoContainer = document.createElement('div');

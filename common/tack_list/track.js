@@ -5,6 +5,7 @@ export function createTrackInContainer(playlistTrackItemData) {
 
     const trackCoverImg = document.createElement('img');
     trackCoverImg.src = playlistTrackItemData.coverTrackImg;
+    trackCoverImg.setAttribute('alt','trackCoverImg');
 
     const trackTitle = document.createElement('p');
     trackTitle.innerHTML = playlistTrackItemData.isHotTrack ? `<span class = "hot">${playlistTrackItemData.artistName} -</span> ${playlistTrackItemData.trackName}` : `<span>${playlistTrackItemData.artistName} -</span> ${playlistTrackItemData.trackName}`
