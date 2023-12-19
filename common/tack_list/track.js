@@ -18,6 +18,3 @@ export function createTrackInContainer(playlistTrackItemData) {
     trackContainer.append(trackCoverImg, trackTitleAndAudioContainer);
     return trackContainer;
 }
-export function getTime(container){
-    let track = container.querySelector('audio');
-}

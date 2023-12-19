@@ -19,8 +19,9 @@ export function renderHeaderPlaylist(playlistTrackItemData){
     playlistTitleInfoContainer.append(playlistTitle);
 
     playlistTitleInfoContainer.append(playlistTimeCountInfo(playlistTrackItemData));
- 
+
     playlistTitleInfoContainer.append(renderAllArtistsInPlaylist(playlistTrackItemData));
     return headerPlaylistContainer;
 
 }
+
