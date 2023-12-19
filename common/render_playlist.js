@@ -5,8 +5,8 @@ export function renderSinglePlaylistContainer(playlistForRenderData){
     let singlePlaylistContainer = document.createElement('div')
     document.body.append(singlePlaylistContainer);
     singlePlaylistContainer.classList.add('playlist_container');
+
     singlePlaylistContainer.append(renderHeaderPlaylist(playlistForRenderData),renderTrackListContainer(playlistForRenderData));
-    let track = singlePlaylistContainer.querySelectorAll('audio');
     return singlePlaylistContainer;
 }
 
