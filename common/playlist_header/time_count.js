@@ -4,3 +4,17 @@ export function playlistTimeCountInfo(playlistTrackItemData) {
     ${(playlistTrackItemData.allTracksInfo.timeCountinSeconds/60).toFixed(2).split('.')[1]}s`;    
     return playlistTimeCountInfo;
 }
+let durationOfAllTracks = [];
+
+console.log(durationOfAllTracks);
+export function getTime(track){
+    if(durationOfAllTracks.length<4){
+        durationOfAllTracks.push(track.target.duration)
+    }
+    return durationOfAllTracks
+    // time+=t;
+    // console.log(time);
+    // durationOfAllTracks.push(track.target.duration)
+    
+}
+
